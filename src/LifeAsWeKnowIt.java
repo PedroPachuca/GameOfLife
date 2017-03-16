@@ -11,7 +11,7 @@ public class LifeAsWeKnowIt {
 	private int rows;
 
 	private int cols;
-	int[][] grid;// this is how you declare a 2D array of int.  What if you wanted 
+	Organism[][] grid;// this is how you declare a 2D array of int.  What if you wanted 
 				 // a 2D array of String?  
 	
 	JFrame frame = new JFrame("Life!");// to be used if displayType is not 1 or 2
@@ -47,7 +47,7 @@ public class LifeAsWeKnowIt {
 
 	private int promptDisplay() {
 		// TODO Auto-generated method stub
-		return 1;
+		return 2;
 	}
 
 	private void pause() {
@@ -77,6 +77,12 @@ public class LifeAsWeKnowIt {
 	}
 
 	private void displayCool() {
+		if(panel == null) {
+			panel = new LifePanel();
+			frame.add(panel);
+			frame.setVisible(true);
+		}
+		panel.displayGrid(grid);
 		// checks to see if the LifePanel is null.  If so, makes a new one and adds it 
 		// to the Jframe, then asks the JFrame to setVisible(true)  
 		// Then, asks the LifePanel to display the grid;
@@ -84,6 +90,10 @@ public class LifeAsWeKnowIt {
 	}
 
 	private void displayGridWorld() {
+		if(world == null) {
+			world = new LifeWorld(rows, cols);
+		}
+		world.display(grid);
 		// checks to see if the world is null, first.  If so, makes a world.  
 		// simply ask the LifeWorld to display the contents of gr
 		
@@ -91,6 +101,17 @@ public class LifeAsWeKnowIt {
 	}
 
 	private void dispConsole() {
+		for(Organism[] arr: grid) {
+			for(Organism cur: arr) {
+				if(cur != null) {
+				System.out.print("1");
+				}
+				else {
+					System.out.print("0");
+				}
+			}
+			System.out.println();
+		}
 		// go through the 2D array, displaying the life or not
 		
 	}
@@ -113,8 +134,13 @@ public class LifeAsWeKnowIt {
 		int cols = scan.nextInt();
 		this.rows = rows;
 		this.cols = cols;
+		grid = new Organism[rows][cols];
+		int currentCol = 0;
+		int currentRow = 0;
 		while(scan.hasNext()) {
-			System.out.println("Still something to scan...");
+			currentRow = scan.nextInt() -1;
+			currentCol = scan.nextInt() -1;
+			grid[currentRow][currentCol] = new Organism(currentRow, currentCol);
 		}
 	}
 

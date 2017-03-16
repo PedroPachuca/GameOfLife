@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 public class LifePanel extends JPanel {
 
 	int[][] grid;
-	public void displayGrid(int[][] gr) {
+	public void displayGrid(Organism[][] grid2) {
 		// do something with gr.
 		
 		repaint();
