@@ -33,7 +33,7 @@ public class LifeAsWeKnowIt {
 	
 
 	private void start() {
-		int displayType = promptDisplay();
+		displayType = promptDisplay();
 		
 		loadLife();
 		show();
@@ -59,6 +59,13 @@ public class LifeAsWeKnowIt {
 	}
 
 	private void step() {
+		for(int row = 0; row < grid.length; row++) {
+			for(int col = 0; col < grid[row].length; col++) {
+				if(grid[row][col] != null) {
+					grid[row][col].step(grid);
+				}
+			}
+		}
 		// takes the organisms from one generation to the next, instantaneously
 		
 	}
@@ -104,10 +111,15 @@ public class LifeAsWeKnowIt {
 		for(Organism[] arr: grid) {
 			for(Organism cur: arr) {
 				if(cur != null) {
+					if(cur.getAlive() == true){
 				System.out.print("1");
+					}
+					else if (cur.getAlive() == false) {
+						System.out.print("0");
+					}
 				}
 				else {
-					System.out.print("0");
+					System.out.print("/");
 				}
 			}
 			System.out.println();
@@ -140,7 +152,15 @@ public class LifeAsWeKnowIt {
 		while(scan.hasNext()) {
 			currentRow = scan.nextInt() -1;
 			currentCol = scan.nextInt() -1;
-			grid[currentRow][currentCol] = new Organism(currentRow, currentCol);
+			grid[currentRow][currentCol] = new Organism(currentRow, currentCol, true);
+		}
+		System.out.println("finished scanning in");
+		for(int row = 0; row < grid.length; row++) {
+			for(int col = 0; col < grid[row].length; col++) {
+				if(grid[row][col] == null) {
+					grid[row][col] = new Organism(row, col, false);
+				}
+			}
 		}
 	}
 
