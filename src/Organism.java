@@ -78,6 +78,7 @@ public class Organism {
 
 	}
 	public void step(Organism[][] grid) {
+		neighbors = 0;
 		totalRows = grid.length;
 		totalCols = grid[0].length;
 		getR(grid);

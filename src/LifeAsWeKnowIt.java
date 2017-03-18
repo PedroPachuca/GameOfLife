@@ -36,7 +36,7 @@ public class LifeAsWeKnowIt {
 		displayType = promptDisplay();
 		
 		loadLife();
-		show();
+		//show();
 		for(int steps= 0; steps < 10; steps++) {
 			
 			step();// advances to the next generation
@@ -51,10 +51,8 @@ public class LifeAsWeKnowIt {
 	}
 
 	private void pause() {
-		if(this.displayType==1) {
 			System.out.println("Hit enter to continue");
-			new Scanner(System.in).nextLine();
-		}
+			new Scanner(System.in).nextLine();			
 		// otherwise, use the buttons in the other interface
 	}
 
@@ -98,8 +96,9 @@ public class LifeAsWeKnowIt {
 
 	private void displayGridWorld() {
 		if(world == null) {
-			world = new LifeWorld(rows, cols);
+			world = new LifeWorld(rows, cols, grid);
 		}
+		System.out.println("Display World");
 		world.display(grid);
 		// checks to see if the world is null, first.  If so, makes a world.  
 		// simply ask the LifeWorld to display the contents of gr
