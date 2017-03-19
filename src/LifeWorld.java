@@ -2,6 +2,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Scanner;
 
 import javax.swing.JButton;
@@ -18,7 +22,7 @@ public class LifeWorld extends JPanel {
 	
 	public LifeWorld(int rows, int cols, Organism[][] org) {
 		this(new Dimension(800, 600), rows, cols, org);
-	}
+		}
 	public LifeWorld(Dimension dimension, int row, int col, Organism[][] org) {
 			this.setPreferredSize(dimension);
 			this.rows = row;
@@ -37,7 +41,6 @@ public class LifeWorld extends JPanel {
 		// traverses the 2D array of ints and adds  things into the world corresponding
 		// to the contents of gr.  When you add things to the world, they will show up
 		// on the screen
-		System.out.println("Displaying");
 		makeGrid(grid);
 		frame.setContentPane(this);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -76,7 +79,23 @@ public class LifeWorld extends JPanel {
                 	grid.setBackground(Color.black);
                 }
                 add(grid);
+                ActionListener actionListener = new ActionListener() {
 
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						for(int row = 0; row < orgGrid.length; row++) {
+							for(int col = 0; col < orgGrid[row].length; col++) {
+								if(orgGrid[row][col] != null) {
+									orgGrid[row][col].step(orgGrid);
+								}
+							}
+					}
+						display(orgGrid);
+						System.out.println("click on any button on frame to continue");
+                	}
+						
+                };
+				grid.addActionListener(actionListener);
             }
         }
     }

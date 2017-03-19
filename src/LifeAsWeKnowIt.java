@@ -29,7 +29,8 @@ public class LifeAsWeKnowIt {
 		new LifeAsWeKnowIt().start();
 
 	}
-
+	public static void cont() {
+	}
 	
 
 	private void start() {
@@ -51,8 +52,14 @@ public class LifeAsWeKnowIt {
 	}
 
 	private void pause() {
+		if(this.displayType == 1) {
 			System.out.println("Hit enter to continue");
-			new Scanner(System.in).nextLine();			
+			new Scanner(System.in).nextLine();	
+		}
+		else {
+			System.out.println("Hit enter to continue");
+			new Scanner(System.in).nextLine();	
+		}
 		// otherwise, use the buttons in the other interface
 	}
 
@@ -98,7 +105,6 @@ public class LifeAsWeKnowIt {
 		if(world == null) {
 			world = new LifeWorld(rows, cols, grid);
 		}
-		System.out.println("Display World");
 		world.display(grid);
 		// checks to see if the world is null, first.  If so, makes a world.  
 		// simply ask the LifeWorld to display the contents of gr

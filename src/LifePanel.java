@@ -8,7 +8,6 @@ public class LifePanel extends JPanel {
 	int[][] grid;
 	public void displayGrid(Organism[][] grid2) {
 		// do something with gr.
-		
 		repaint();
 	}
 	
