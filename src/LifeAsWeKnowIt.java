@@ -106,6 +106,7 @@ public class LifeAsWeKnowIt {
 			world = new LifeWorld(rows, cols, grid);
 		}
 		world.display(grid);
+		System.out.println("Toggle living or dead by right clicking on the cell");
 		// checks to see if the world is null, first.  If so, makes a world.  
 		// simply ask the LifeWorld to display the contents of gr
 		

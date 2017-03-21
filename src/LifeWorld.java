@@ -6,11 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 
 public class LifeWorld extends JPanel {
@@ -69,6 +71,8 @@ public class LifeWorld extends JPanel {
         JButton grid;
         for (int y = 0; y < t; y++) {
             for (int x = 0; x < t; x++) {
+            	final int curX = x;
+            	final int curY = y;
                 grid = new JButton(x + "," + y);
                 grid.setText("");
                 grid.setPreferredSize(new Dimension(55, 55));
@@ -91,11 +95,46 @@ public class LifeWorld extends JPanel {
 							}
 					}
 						display(orgGrid);
-						System.out.println("click on any button on frame to continue");
+						System.out.println("Click on any button on frame to step");
                 	}
 						
                 };
 				grid.addActionListener(actionListener);
+				MouseListener mouseListener = new MouseListener() {
+					
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void mousePressed(MouseEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void mouseReleased(MouseEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void mouseClicked(MouseEvent e) {
+							orgGrid[curY][curX].alive = !orgGrid[curY][curX].getAlive();
+							display(orgGrid);
+						// TODO Auto-generated method stub
+						
+					}
+				};
+				grid.addMouseListener(mouseListener);
             }
         }
     }
